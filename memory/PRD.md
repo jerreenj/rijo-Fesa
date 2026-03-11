@@ -33,23 +33,21 @@ Revamp the RJ Associates website (from GitHub repo) with:
 ## What's Been Implemented
 **Date: Jan 2026**
 - [x] Complete visual rebrand from RJ Associates to Fesa Global
+- [x] **Custom logo image** in header (top left) and footer (bottom left)
+- [x] **"FESA GLOBAL"** text centered below globe (FESA in cyan #00CED1, GLOBAL in white)
+- [x] "Recruitment Services LLP" tagline
 - [x] New dark/white/grey color scheme
-- [x] Interactive wireframe dotted globe (D3.js) - CENTERED in hero
-- [x] Clean "FesaGlobal" branding (no boxed icon)
-- [x] Original tagline "Your Career in Europe Starts Here"
-- [x] **CLEAN HERO** - No header/navigation on initial load (elegant focus)
-- [x] **HEADER APPEARS ON SCROLL** - Navigation shows after scrolling past hero
-- [x] Immediate CTA section on scroll ("Ready to Work in Europe?")
-- [x] User-submitted testimonials with photo upload (no fake AI testimonials)
+- [x] Interactive wireframe dotted globe (D3.js) - properly centered
+- [x] Navigation visible on hero (Home, Services, Regions, About, Stories, Get Started)
+- [x] **Testimonials marquee** - auto-scrolling testimonial cards with real data
 - [x] **FULL MOBILE OPTIMIZATION**:
   - Touch-friendly globe with drag/rotate
-  - Responsive sizing (280px mobile, 500px desktop)
-  - Stacked buttons on mobile
-  - Proper text sizing (sm: breakpoints)
-  - No horizontal scroll
-- [x] Modern minimalist UI with glass-morphism effects
+  - Responsive sizing for all viewports
+  - No horizontal overflow
+  - Proper text sizing
+- [x] Modern minimalist UI
 - [x] All sections rebuilt with new aesthetic
-- [x] Mobile-responsive navigation
+- [x] Mobile-responsive navigation with hamburger menu
 - [x] Contact form with Gmail integration
 - [x] WhatsApp consultation button
 - [x] Social media links (LinkedIn, Twitter, Instagram)
