@@ -40,12 +40,12 @@ function App() {
   return (
     <Layout>
       <HeroSection />
+      <CtaSection />
       <ServicesSection />
       <RegionsSection />
       <AboutSection />
       <TestimonialsSection />
       <FaqSection />
-      <CtaSection />
       <ContactSection />
     </Layout>
   );
