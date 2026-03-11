@@ -33,14 +33,8 @@ const Header = () => {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo Image */}
-          <a href="#home" className="flex-shrink-0" data-testid="logo">
-            <img 
-              src={LOGO_URL} 
-              alt="Fesa Global" 
-              className="h-10 sm:h-12 w-auto object-contain"
-            />
-          </a>
+          {/* Empty space for balance */}
+          <div className="flex-shrink-0 w-10 sm:w-12"></div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
