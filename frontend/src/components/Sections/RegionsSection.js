@@ -50,30 +50,29 @@ const RegionsSection = () => {
   const [activeTab, setActiveTab] = useState('europe');
 
   return (
-    <section id="regions" className="py-32 bg-black relative" data-testid="regions-section">
+    <section id="regions" className="py-16 sm:py-24 lg:py-32 bg-black relative px-4" data-testid="regions-section">
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent"></div>
       
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-8 mb-8 sm:mb-12">
           <div>
-            <span className="text-sm text-gray-500 uppercase tracking-wider">Global Reach</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mt-4">
+            <span className="text-xs sm:text-sm text-gray-500 uppercase tracking-wider">Global Reach</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 sm:mt-4">
               Where We
               <span className="text-gray-500"> Operate</span>
             </h2>
           </div>
           
-          <div className="flex bg-white/5 p-1 rounded-full">
+          <div className="flex bg-white/5 p-1 rounded-full self-start sm:self-auto">
             {['europe', 'americas'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                className={`px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-300 ${
                   activeTab === tab
                     ? 'bg-white text-black'
                     : 'text-gray-400 hover:text-white'
                 }`}
-                data-testid={`${tab}-tab`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
@@ -81,36 +80,37 @@ const RegionsSection = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {regions[activeTab].map((region, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all duration-500"
+              className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all duration-500"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src={region.image}
                   alt={region.name}
                   className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-700"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
               </div>
               
               {region.comingSoon && (
-                <div className="absolute top-4 right-4 px-3 py-1 bg-white/10 backdrop-blur-sm text-white text-xs font-medium rounded-full">
+                <div className="absolute top-3 right-3 px-2.5 py-1 bg-white/10 backdrop-blur-sm text-white text-xs font-medium rounded-full">
                   Coming Soon
                 </div>
               )}
               
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-xl font-semibold text-white mb-1">{region.name}</h3>
-                <p className="text-gray-500 text-sm mb-4">{region.countries}</p>
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-1">{region.name}</h3>
+                <p className="text-gray-500 text-xs sm:text-sm mb-3 sm:mb-4">{region.countries}</p>
                 
-                <div className="space-y-2">
+                <div className="space-y-1.5 sm:space-y-2">
                   {region.benefits.map((benefit, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <Check className="h-3 w-3 text-gray-500" />
-                      <span className="text-gray-400 text-sm">{benefit}</span>
+                      <span className="text-gray-400 text-xs sm:text-sm">{benefit}</span>
                     </div>
                   ))}
                 </div>
