@@ -4,23 +4,23 @@ import { Plus, Minus } from 'lucide-react';
 const faqs = [
   {
     question: 'How long does the placement process take?',
-    answer: 'The complete process typically takes around 90 days, including consultation, document verification, employer matching, interviews, and relocation paperwork. Timeline varies based on destination country and specific requirements.'
+    answer: 'The complete process typically takes around 90 days, including consultation, document verification, employer matching, interviews, and relocation paperwork.'
   },
   {
     question: 'What countries do you operate in?',
-    answer: 'We specialize in placements across Europe including UK, Germany, France, Spain, Italy, Netherlands, Sweden, and more. We\'re expanding to North American markets soon.'
+    answer: 'We specialize in placements across Europe including UK, Germany, France, Spain, Italy, Netherlands, Sweden, and more. North American markets coming soon.'
   },
   {
     question: 'Do I need to speak the local language?',
-    answer: 'Language requirements vary by position and country. Some roles only require English, especially in UK, Ireland, or Nordic countries. We offer language training resources when needed.'
+    answer: 'Language requirements vary by position. Some roles only require English, especially in UK, Ireland, or Nordic countries. We offer language training resources when needed.'
   },
   {
-    question: 'What qualifications are needed for healthcare roles?',
-    answer: 'Healthcare qualifications need recognition in your destination country. This involves degree verification, professional registration, and sometimes additional exams. We guide you through the entire recognition process.'
+    question: 'What qualifications are needed?',
+    answer: 'Healthcare qualifications need recognition in your destination country. We guide you through degree verification, professional registration, and any additional requirements.'
   },
   {
     question: 'How do you help with relocation?',
-    answer: 'Our support includes work permits, visa applications, housing guidance, healthcare information, cultural orientation, and language courses. We coordinate with employers for a smooth transition.'
+    answer: 'Our support includes work permits, visa applications, housing guidance, healthcare information, cultural orientation, and language courses.'
   },
 ];
 
@@ -28,26 +28,26 @@ const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="faq" className="py-32 bg-black relative" data-testid="faq-section">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16">
+    <section id="faq" className="py-16 sm:py-24 lg:py-32 bg-black relative px-4" data-testid="faq-section">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Left - Header */}
           <div>
-            <span className="text-sm text-gray-500 uppercase tracking-wider">FAQ</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+            <span className="text-xs sm:text-sm text-gray-500 uppercase tracking-wider">FAQ</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 sm:mt-4 mb-4 sm:mb-6">
               Common
               <br />
               <span className="text-gray-500">Questions</span>
             </h2>
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
               Everything you need to know about our recruitment process and working in Europe.
             </p>
             
-            <div className="mt-10 p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
+            <div className="mt-8 sm:mt-10 p-4 sm:p-6 bg-white/[0.02] border border-white/5 rounded-xl sm:rounded-2xl">
               <p className="text-gray-400 text-sm">Still have questions?</p>
               <a 
                 href="#contact" 
-                className="inline-flex items-center gap-2 text-white font-medium mt-2 hover:underline"
+                className="inline-flex items-center gap-2 text-white font-medium mt-2 text-sm sm:text-base hover:underline"
               >
                 Contact our team
               </a>
@@ -55,26 +55,26 @@ const FaqSection = () => {
           </div>
 
           {/* Right - FAQ Items */}
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className={`border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 ${
+                className={`border border-white/5 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 ${
                   openIndex === index ? 'bg-white/[0.02]' : 'hover:bg-white/[0.01]'
                 }`}
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-                  className="w-full flex items-center justify-between p-6 text-left"
+                  className="w-full flex items-center justify-between p-4 sm:p-6 text-left"
                 >
-                  <span className="text-white font-medium pr-4">{faq.question}</span>
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                  <span className="text-white font-medium text-sm sm:text-base pr-4">{faq.question}</span>
+                  <div className={`flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-colors ${
                     openIndex === index ? 'bg-white text-black' : 'bg-white/5 text-gray-400'
                   }`}>
                     {openIndex === index ? (
-                      <Minus className="h-4 w-4" />
+                      <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
                     ) : (
-                      <Plus className="h-4 w-4" />
+                      <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                     )}
                   </div>
                 </button>
@@ -82,7 +82,7 @@ const FaqSection = () => {
                 <div className={`overflow-hidden transition-all duration-300 ${
                   openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
                 }`}>
-                  <p className="px-6 pb-6 text-gray-400 leading-relaxed">
+                  <p className="px-4 sm:px-6 pb-4 sm:pb-6 text-gray-400 text-sm sm:text-base leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
