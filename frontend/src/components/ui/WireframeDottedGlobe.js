@@ -5,6 +5,20 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
   const canvasRef = useRef(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [dimensions, setDimensions] = useState({ width, height })
+
+  // Handle responsive sizing
+  useEffect(() => {
+    const updateDimensions = () => {
+      const isMobile = window.innerWidth < 640
+      const size = isMobile ? Math.min(280, window.innerWidth - 40) : Math.min(500, window.innerWidth - 80)
+      setDimensions({ width: size, height: size })
+    }
+
+    updateDimensions()
+    window.addEventListener('resize', updateDimensions)
+    return () => window.removeEventListener('resize', updateDimensions)
+  }, [])
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -13,9 +27,8 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
     const context = canvas.getContext("2d")
     if (!context) return
 
-    // Set up responsive dimensions
-    const containerWidth = Math.min(width, window.innerWidth - 40)
-    const containerHeight = Math.min(height, window.innerHeight - 100)
+    const containerWidth = dimensions.width
+    const containerHeight = dimensions.height
     const radius = Math.min(containerWidth, containerHeight) / 2.5
 
     const dpr = window.devicePixelRatio || 1
@@ -25,7 +38,6 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
     canvas.style.height = `${containerHeight}px`
     context.scale(dpr, dpr)
 
-    // Create projection and path generator for Canvas
     const projection = d3
       .geoOrthographic()
       .scale(radius)
@@ -37,31 +49,23 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
     const pointInPolygon = (point, polygon) => {
       const [x, y] = point
       let inside = false
-
       for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
         const [xi, yi] = polygon[i]
         const [xj, yj] = polygon[j]
-
         if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
           inside = !inside
         }
       }
-
       return inside
     }
 
     const pointInFeature = (point, feature) => {
       const geometry = feature.geometry
-
       if (geometry.type === "Polygon") {
         const coordinates = geometry.coordinates
-        if (!pointInPolygon(point, coordinates[0])) {
-          return false
-        }
+        if (!pointInPolygon(point, coordinates[0])) return false
         for (let i = 1; i < coordinates.length; i++) {
-          if (pointInPolygon(point, coordinates[i])) {
-            return false
-          }
+          if (pointInPolygon(point, coordinates[i])) return false
         }
         return true
       } else if (geometry.type === "MultiPolygon") {
@@ -69,19 +73,13 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
           if (pointInPolygon(point, polygon[0])) {
             let inHole = false
             for (let i = 1; i < polygon.length; i++) {
-              if (pointInPolygon(point, polygon[i])) {
-                inHole = true
-                break
-              }
+              if (pointInPolygon(point, polygon[i])) { inHole = true; break }
             }
-            if (!inHole) {
-              return true
-            }
+            if (!inHole) return true
           }
         }
         return false
       }
-
       return false
     }
 
@@ -89,18 +87,13 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
       const dots = []
       const bounds = d3.geoBounds(feature)
       const [[minLng, minLat], [maxLng, maxLat]] = bounds
-
       const stepSize = dotSpacing * 0.08
-
       for (let lng = minLng; lng <= maxLng; lng += stepSize) {
         for (let lat = minLat; lat <= maxLat; lat += stepSize) {
           const point = [lng, lat]
-          if (pointInFeature(point, feature)) {
-            dots.push(point)
-          }
+          if (pointInFeature(point, feature)) dots.push(point)
         }
       }
-
       return dots
     }
 
@@ -109,52 +102,39 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
 
     const render = () => {
       context.clearRect(0, 0, containerWidth, containerHeight)
-
       const currentScale = projection.scale()
       const scaleFactor = currentScale / radius
 
-      // Draw ocean (globe background)
       context.beginPath()
       context.arc(containerWidth / 2, containerHeight / 2, currentScale, 0, 2 * Math.PI)
       context.fillStyle = "#000000"
       context.fill()
       context.strokeStyle = "#ffffff"
-      context.lineWidth = 2 * scaleFactor
+      context.lineWidth = 1.5 * scaleFactor
       context.stroke()
 
       if (landFeatures) {
-        // Draw graticule
         const graticule = d3.geoGraticule()
         context.beginPath()
         path(graticule())
         context.strokeStyle = "#ffffff"
-        context.lineWidth = 1 * scaleFactor
-        context.globalAlpha = 0.25
+        context.lineWidth = 0.5 * scaleFactor
+        context.globalAlpha = 0.2
         context.stroke()
         context.globalAlpha = 1
 
-        // Draw land outlines
         context.beginPath()
-        landFeatures.features.forEach((feature) => {
-          path(feature)
-        })
+        landFeatures.features.forEach((feature) => path(feature))
         context.strokeStyle = "#ffffff"
-        context.lineWidth = 1 * scaleFactor
+        context.lineWidth = 0.8 * scaleFactor
         context.stroke()
 
-        // Draw halftone dots
         allDots.forEach((dot) => {
           const projected = projection([dot.lng, dot.lat])
-          if (
-            projected &&
-            projected[0] >= 0 &&
-            projected[0] <= containerWidth &&
-            projected[1] >= 0 &&
-            projected[1] <= containerHeight
-          ) {
+          if (projected && projected[0] >= 0 && projected[0] <= containerWidth && projected[1] >= 0 && projected[1] <= containerHeight) {
             context.beginPath()
-            context.arc(projected[0], projected[1], 1.2 * scaleFactor, 0, 2 * Math.PI)
-            context.fillStyle = "#666666"
+            context.arc(projected[0], projected[1], 1 * scaleFactor, 0, 2 * Math.PI)
+            context.fillStyle = "#555555"
             context.fill()
           }
         })
@@ -164,33 +144,24 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
     const loadWorldData = async () => {
       try {
         setIsLoading(true)
-
-        const response = await fetch(
-          "https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/110m/physical/ne_110m_land.json",
-        )
+        const response = await fetch("https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/110m/physical/ne_110m_land.json")
         if (!response.ok) throw new Error("Failed to load land data")
-
         landFeatures = await response.json()
-
         landFeatures.features.forEach((feature) => {
           const dots = generateDotsInPolygon(feature, 16)
-          dots.forEach(([lng, lat]) => {
-            allDots.push({ lng, lat, visible: true })
-          })
+          dots.forEach(([lng, lat]) => allDots.push({ lng, lat, visible: true }))
         })
-
         render()
         setIsLoading(false)
       } catch (err) {
-        setError("Failed to load land map data")
+        setError("Failed to load map")
         setIsLoading(false)
       }
     }
 
-    // Set up rotation and interaction
     const rotation = [0, 0]
     let autoRotate = true
-    const rotationSpeed = 0.3
+    const rotationSpeed = 0.25
 
     const rotate = () => {
       if (autoRotate) {
@@ -202,6 +173,35 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
 
     const rotationTimer = d3.timer(rotate)
 
+    // Touch support for mobile
+    let lastTouch = null
+
+    const handleTouchStart = (e) => {
+      if (e.touches.length === 1) {
+        autoRotate = false
+        lastTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY, rotation: [...rotation] }
+      }
+    }
+
+    const handleTouchMove = (e) => {
+      if (lastTouch && e.touches.length === 1) {
+        e.preventDefault()
+        const sensitivity = 0.3
+        const dx = e.touches[0].clientX - lastTouch.x
+        const dy = e.touches[0].clientY - lastTouch.y
+        rotation[0] = lastTouch.rotation[0] + dx * sensitivity
+        rotation[1] = lastTouch.rotation[1] - dy * sensitivity
+        rotation[1] = Math.max(-90, Math.min(90, rotation[1]))
+        projection.rotate(rotation)
+        render()
+      }
+    }
+
+    const handleTouchEnd = () => {
+      lastTouch = null
+      setTimeout(() => { autoRotate = true }, 100)
+    }
+
     const handleMouseDown = (event) => {
       autoRotate = false
       const startX = event.clientX
@@ -209,14 +209,12 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
       const startRotation = [...rotation]
 
       const handleMouseMove = (moveEvent) => {
-        const sensitivity = 0.5
+        const sensitivity = 0.4
         const dx = moveEvent.clientX - startX
         const dy = moveEvent.clientY - startY
-
         rotation[0] = startRotation[0] + dx * sensitivity
         rotation[1] = startRotation[1] - dy * sensitivity
         rotation[1] = Math.max(-90, Math.min(90, rotation[1]))
-
         projection.rotate(rotation)
         render()
       }
@@ -224,43 +222,33 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
       const handleMouseUp = () => {
         document.removeEventListener("mousemove", handleMouseMove)
         document.removeEventListener("mouseup", handleMouseUp)
-
-        setTimeout(() => {
-          autoRotate = true
-        }, 10)
+        setTimeout(() => { autoRotate = true }, 100)
       }
 
       document.addEventListener("mousemove", handleMouseMove)
       document.addEventListener("mouseup", handleMouseUp)
     }
 
-    const handleWheel = (event) => {
-      event.preventDefault()
-      const scaleFactor = event.deltaY > 0 ? 0.9 : 1.1
-      const newRadius = Math.max(radius * 0.5, Math.min(radius * 3, projection.scale() * scaleFactor))
-      projection.scale(newRadius)
-      render()
-    }
-
     canvas.addEventListener("mousedown", handleMouseDown)
-    canvas.addEventListener("wheel", handleWheel)
+    canvas.addEventListener("touchstart", handleTouchStart, { passive: false })
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: false })
+    canvas.addEventListener("touchend", handleTouchEnd)
 
     loadWorldData()
 
     return () => {
       rotationTimer.stop()
       canvas.removeEventListener("mousedown", handleMouseDown)
-      canvas.removeEventListener("wheel", handleWheel)
+      canvas.removeEventListener("touchstart", handleTouchStart)
+      canvas.removeEventListener("touchmove", handleTouchMove)
+      canvas.removeEventListener("touchend", handleTouchEnd)
     }
-  }, [width, height])
+  }, [dimensions])
 
   if (error) {
     return (
-      <div className={`flex items-center justify-center bg-black rounded-2xl p-8 ${className}`}>
-        <div className="text-center">
-          <p className="text-red-500 font-semibold mb-2">Error loading Earth visualization</p>
-          <p className="text-gray-500 text-sm">{error}</p>
-        </div>
+      <div className={`flex items-center justify-center bg-black rounded-2xl p-4 ${className}`}>
+        <p className="text-gray-500 text-sm">{error}</p>
       </div>
     )
   }
@@ -269,12 +257,9 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
     <div className={`relative ${className}`}>
       <canvas
         ref={canvasRef}
-        className="w-full h-auto rounded-2xl bg-black"
+        className="w-full h-auto rounded-2xl bg-black touch-none"
         style={{ maxWidth: "100%", height: "auto" }}
       />
-      <div className="absolute bottom-4 left-4 text-xs text-gray-500 px-2 py-1 rounded-md bg-black/80 backdrop-blur-sm border border-gray-800">
-        Drag to rotate • Scroll to zoom
-      </div>
     </div>
   )
 }
