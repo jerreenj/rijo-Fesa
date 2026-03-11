@@ -37,8 +37,16 @@ Revamp the RJ Associates website (from GitHub repo) with:
 - [x] Interactive wireframe dotted globe (D3.js) - CENTERED in hero
 - [x] Clean "FesaGlobal" branding (no boxed icon)
 - [x] Original tagline "Your Career in Europe Starts Here"
+- [x] **CLEAN HERO** - No header/navigation on initial load (elegant focus)
+- [x] **HEADER APPEARS ON SCROLL** - Navigation shows after scrolling past hero
 - [x] Immediate CTA section on scroll ("Ready to Work in Europe?")
 - [x] User-submitted testimonials with photo upload (no fake AI testimonials)
+- [x] **FULL MOBILE OPTIMIZATION**:
+  - Touch-friendly globe with drag/rotate
+  - Responsive sizing (280px mobile, 500px desktop)
+  - Stacked buttons on mobile
+  - Proper text sizing (sm: breakpoints)
+  - No horizontal scroll
 - [x] Modern minimalist UI with glass-morphism effects
 - [x] All sections rebuilt with new aesthetic
 - [x] Mobile-responsive navigation
