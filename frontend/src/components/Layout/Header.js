@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const LOGO_URL = 'https://customer-assets.emergentagent.com/job_1656f242-b31d-4d9c-afe3-e0ace3c147eb/artifacts/qs63khcz_photo_2026-03-11_22-00-53.jpg';
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,24 +30,21 @@ const Header = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Empty space for balance */}
-          <div className="flex-shrink-0 w-10 sm:w-12"></div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+        <div className="flex items-center justify-center h-16 sm:h-20">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors"
+                className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
               >
                 {item.name}
               </a>
             ))}
             <a 
               href="#contact" 
-              className="ml-3 px-5 py-2 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-all"
+              className="ml-4 px-6 py-2 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-all"
               data-testid="get-started-btn"
             >
               Get Started
@@ -75,7 +70,7 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-base text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5"
+                  className="text-base text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 text-center"
                 >
                   {item.name}
                 </a>
