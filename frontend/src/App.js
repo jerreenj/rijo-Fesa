@@ -1,53 +1,53 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import React, { useEffect } from 'react';
+import Layout from './components/Layout/Layout';
+import HeroSection from './components/Sections/HeroSection';
+import ServicesSection from './components/Sections/ServicesSection';
+import RegionsSection from './components/Sections/RegionsSection';
+import AboutSection from './components/Sections/AboutSection';
+import TestimonialsSection from './components/Sections/TestimonialsSection';
+import ContactSection from './components/Sections/ContactSection';
+import FaqSection from './components/Sections/FaqSection';
+import CtaSection from './components/Sections/CtaSection';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
+function App() {
   useEffect(() => {
-    helloWorldApi();
+    document.title = "RJ Associates | International Healthcare & Construction Recruitment";
+    
+    const handleAnchorClick = (e) => {
+      const target = e.target;
+      const link = target.closest('a');
+      
+      if (link && link.hash && link.hash.startsWith('#')) {
+        e.preventDefault();
+        
+        const targetElement = document.querySelector(link.hash);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.getBoundingClientRect().top + window.scrollY - 80,
+            behavior: 'smooth'
+          });
+        }
+      }
+    };
+    
+    document.addEventListener('click', handleAnchorClick);
+    
+    return () => {
+      document.removeEventListener('click', handleAnchorClick);
+    };
   }, []);
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
-
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <Layout>
+      <HeroSection />
+      <ServicesSection />
+      <RegionsSection />
+      <AboutSection />
+      <TestimonialsSection />
+      <FaqSection />
+      <CtaSection />
+      <ContactSection />
+    </Layout>
   );
 }
 
