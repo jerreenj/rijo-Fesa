@@ -34,7 +34,11 @@ Revamp the RJ Associates website (from GitHub repo) with:
 **Date: Jan 2026**
 - [x] Complete visual rebrand from RJ Associates to Fesa Global
 - [x] New dark/white/grey color scheme
-- [x] Interactive wireframe dotted globe (D3.js)
+- [x] Interactive wireframe dotted globe (D3.js) - CENTERED in hero
+- [x] Clean "FesaGlobal" branding (no boxed icon)
+- [x] Original tagline "Your Career in Europe Starts Here"
+- [x] Immediate CTA section on scroll ("Ready to Work in Europe?")
+- [x] User-submitted testimonials with photo upload (no fake AI testimonials)
 - [x] Modern minimalist UI with glass-morphism effects
 - [x] All sections rebuilt with new aesthetic
 - [x] Mobile-responsive navigation
