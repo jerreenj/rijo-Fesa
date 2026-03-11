@@ -8,7 +8,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -20,47 +20,44 @@ const Header = () => {
     { name: 'Services', href: '#services' },
     { name: 'Regions', href: '#regions' },
     { name: 'About', href: '#about' },
-    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Stories', href: '#testimonials' },
   ];
 
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-black/90 backdrop-blur-xl border-b border-white/5' 
+          ? 'bg-black/95 backdrop-blur-xl border-b border-white/5' 
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           <Logo />
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-8">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-300"
+                className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
               >
                 {item.name}
               </a>
             ))}
-          </nav>
-
-          <div className="hidden lg:flex items-center gap-4">
             <a 
               href="#contact" 
-              className="px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-all duration-300"
+              className="px-5 py-2 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-all duration-300"
               data-testid="book-consultation-btn"
             >
               Get Started
             </a>
-          </div>
+          </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+            className="lg:hidden text-white p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             data-testid="mobile-menu-btn"
           >
@@ -69,32 +66,29 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div
-          className={`lg:hidden fixed inset-0 bg-black z-40 transition-all duration-300 ${
-            isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-          }`}
-          style={{ top: '80px' }}
-        >
-          <div className="flex flex-col p-6 gap-2">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
+        {isMenuOpen && (
+          <div className="lg:hidden fixed inset-x-0 top-16 bg-black/98 backdrop-blur-xl border-t border-white/5 p-6">
+            <div className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-lg text-gray-300 hover:text-white py-2"
+                >
+                  {item.name}
+                </a>
+              ))}
+              <a 
+                href="#contact" 
                 onClick={() => setIsMenuOpen(false)}
-                className="px-4 py-4 text-lg text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                className="mt-4 px-6 py-3 bg-white text-black text-center font-medium rounded-full"
               >
-                {item.name}
+                Get Started
               </a>
-            ))}
-            <a 
-              href="#contact" 
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-4 px-6 py-4 bg-white text-black text-center font-medium rounded-full"
-            >
-              Get Started
-            </a>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </header>
   );
