@@ -1,34 +1,37 @@
 import { useEffect, useRef, useState } from "react"
 import * as d3 from "d3"
 
-export default function RotatingEarth({ width = 800, height = 600, className = "" }) {
+export default function RotatingEarth({ width = 500, height = 500, className = "" }) {
   const canvasRef = useRef(null)
+  const containerRef = useRef(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [dimensions, setDimensions] = useState({ width, height })
+  const [actualSize, setActualSize] = useState({ width: 500, height: 500 })
 
-  // Handle responsive sizing
+  // Handle responsive sizing based on container
   useEffect(() => {
-    const updateDimensions = () => {
-      const isMobile = window.innerWidth < 640
-      const size = isMobile ? Math.min(280, window.innerWidth - 40) : Math.min(500, window.innerWidth - 80)
-      setDimensions({ width: size, height: size })
+    const updateSize = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth
+        const size = Math.min(containerWidth, width)
+        setActualSize({ width: size, height: size })
+      }
     }
 
-    updateDimensions()
-    window.addEventListener('resize', updateDimensions)
-    return () => window.removeEventListener('resize', updateDimensions)
-  }, [])
+    updateSize()
+    window.addEventListener('resize', updateSize)
+    return () => window.removeEventListener('resize', updateSize)
+  }, [width])
 
   useEffect(() => {
-    if (!canvasRef.current) return
+    if (!canvasRef.current || actualSize.width < 100) return
 
     const canvas = canvasRef.current
     const context = canvas.getContext("2d")
     if (!context) return
 
-    const containerWidth = dimensions.width
-    const containerHeight = dimensions.height
+    const containerWidth = actualSize.width
+    const containerHeight = actualSize.height
     const radius = Math.min(containerWidth, containerHeight) / 2.5
 
     const dpr = window.devicePixelRatio || 1
@@ -119,7 +122,7 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
         path(graticule())
         context.strokeStyle = "#ffffff"
         context.lineWidth = 0.5 * scaleFactor
-        context.globalAlpha = 0.2
+        context.globalAlpha = 0.15
         context.stroke()
         context.globalAlpha = 1
 
@@ -134,7 +137,7 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
           if (projected && projected[0] >= 0 && projected[0] <= containerWidth && projected[1] >= 0 && projected[1] <= containerHeight) {
             context.beginPath()
             context.arc(projected[0], projected[1], 1 * scaleFactor, 0, 2 * Math.PI)
-            context.fillStyle = "#555555"
+            context.fillStyle = "#444444"
             context.fill()
           }
         })
@@ -161,7 +164,7 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
 
     const rotation = [0, 0]
     let autoRotate = true
-    const rotationSpeed = 0.25
+    const rotationSpeed = 0.2
 
     const rotate = () => {
       if (autoRotate) {
@@ -173,7 +176,7 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
 
     const rotationTimer = d3.timer(rotate)
 
-    // Touch support for mobile
+    // Touch support
     let lastTouch = null
 
     const handleTouchStart = (e) => {
@@ -243,7 +246,7 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
       canvas.removeEventListener("touchmove", handleTouchMove)
       canvas.removeEventListener("touchend", handleTouchEnd)
     }
-  }, [dimensions])
+  }, [actualSize])
 
   if (error) {
     return (
@@ -254,11 +257,11 @@ export default function RotatingEarth({ width = 800, height = 600, className = "
   }
 
   return (
-    <div className={`relative ${className}`}>
+    <div ref={containerRef} className={`relative w-full ${className}`}>
       <canvas
         ref={canvasRef}
-        className="w-full h-auto rounded-2xl bg-black touch-none"
-        style={{ maxWidth: "100%", height: "auto" }}
+        className="w-full h-auto bg-black touch-none"
+        style={{ maxWidth: "100%", aspectRatio: '1/1' }}
       />
     </div>
   )
