@@ -9,18 +9,19 @@ const Button = ({
   type = 'button',
   disabled = false,
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-all duration-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/20 disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variantClasses = {
-    primary: 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-blue-500/25',
-    secondary: 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-purple-500/25',
-    outline: 'bg-transparent border border-gray-600 text-gray-300 hover:border-white hover:text-white',
+    primary: 'bg-white text-black hover:bg-gray-200 rounded-full',
+    secondary: 'bg-gray-800 text-white hover:bg-gray-700 rounded-full border border-gray-700',
+    outline: 'bg-transparent border-2 border-white/20 text-white hover:border-white/40 hover:bg-white/5 rounded-full',
+    ghost: 'bg-transparent text-white hover:bg-white/10 rounded-lg',
   };
   
   const sizeClasses = {
-    sm: 'text-xs py-2 px-3',
-    md: 'text-sm py-2.5 px-5',
-    lg: 'text-base py-3 px-6',
+    sm: 'text-sm py-2 px-4',
+    md: 'text-sm py-3 px-6',
+    lg: 'text-base py-4 px-8',
   };
 
   const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;

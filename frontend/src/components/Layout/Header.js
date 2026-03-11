@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import NavLink from './NavLink';
 import Logo from '../UI/Logo';
 
 const Header = () => {
@@ -9,100 +8,91 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const navItems = ['Home', 'Regions', 'About', 'Testimonials'];
+  const navItems = [
+    { name: 'Home', href: '#home' },
+    { name: 'Services', href: '#services' },
+    { name: 'Regions', href: '#regions' },
+    { name: 'About', href: '#about' },
+    { name: 'Testimonials', href: '#testimonials' },
+  ];
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 h-20 ${
-        isScrolled ? 'bg-black/80 backdrop-blur-lg' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-black/90 backdrop-blur-xl border-b border-white/5' 
+          : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-6 h-full">
-        <div className="flex items-center justify-between h-full">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           <Logo />
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
-            <div className="flex space-x-4">
-              {navItems.map((item) => (
-                <NavLink 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`}
-                  className="px-6 py-2 rounded-full hover:bg-white/5 transition-all duration-300 transform hover:scale-105"
-                >
-                  {item}
-                </NavLink>
-              ))}
-            </div>
+          <nav className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-300"
+              >
+                {item.name}
+              </a>
+            ))}
+          </nav>
 
+          <div className="hidden lg:flex items-center gap-4">
             <a 
               href="#contact" 
-              className="px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105"
+              className="px-6 py-2.5 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-all duration-300"
               data-testid="book-consultation-btn"
             >
-              Book Consultation
+              Get Started
             </a>
-          </nav>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-white focus:outline-none z-50 relative"
-            onClick={toggleMenu}
+            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             data-testid="mobile-menu-btn"
           >
-            {isMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         <div
-          className={`lg:hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-45 transform transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          className={`lg:hidden fixed inset-0 bg-black z-40 transition-all duration-300 ${
+            isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
-          style={{ zIndex: 45 }}
+          style={{ top: '80px' }}
         >
-          <div className="flex flex-col items-center justify-center min-h-screen py-20">
-            <div className="flex flex-col items-center space-y-8">
-              {navItems.map((item) => (
-                <NavLink 
-                  key={item}
-                  href={`#${item.toLowerCase()}`} 
-                  onClick={toggleMenu}
-                  className="text-xl px-6 py-2 rounded-full hover:bg-white/5 transition-all duration-300"
-                >
-                  {item}
-                </NavLink>
-              ))}
-
-              <a 
-                href="#contact" 
-                className="text-xl px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
-                onClick={toggleMenu}
+          <div className="flex flex-col p-6 gap-2">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                className="px-4 py-4 text-lg text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-all"
               >
-                Book Consultation
+                {item.name}
               </a>
-            </div>
+            ))}
+            <a 
+              href="#contact" 
+              onClick={() => setIsMenuOpen(false)}
+              className="mt-4 px-6 py-4 bg-white text-black text-center font-medium rounded-full"
+            >
+              Get Started
+            </a>
           </div>
         </div>
       </div>

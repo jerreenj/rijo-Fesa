@@ -11,7 +11,7 @@ import CtaSection from './components/Sections/CtaSection';
 
 function App() {
   useEffect(() => {
-    document.title = "RJ Associates | International Healthcare & Construction Recruitment";
+    document.title = "Fesa Global | International Healthcare & Construction Recruitment";
     
     const handleAnchorClick = (e) => {
       const target = e.target;

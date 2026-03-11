@@ -1,98 +1,107 @@
 import React from 'react';
-import { Facebook, Instagram } from 'lucide-react';
+import { Linkedin, Twitter, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import Logo from '../UI/Logo';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white pt-16 pb-8">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Company Info */}
-          <div className="flex flex-col items-start">
+    <footer className="bg-black border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Brand */}
+          <div className="lg:col-span-1">
             <Logo />
-            <p className="text-gray-400 mt-4">
-              Connecting talented professionals with exceptional career opportunities in Europe and beyond.
+            <p className="mt-6 text-gray-500 text-sm leading-relaxed">
+              Connecting exceptional talent with world-class opportunities across Europe and beyond.
             </p>
-            <div className="flex space-x-4 mt-6">
-              <a 
-                href="https://www.facebook.com/share/1C8WZGULmi/?mibextid=qi2Omg" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white hover:bg-gray-700 transition-all duration-300 transform hover:scale-110"
-                data-testid="facebook-link"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://www.instagram.com/rjass.ociates/profilecard/?igsh=anFvcm1ybDF6bjYy" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white hover:bg-gray-700 transition-all duration-300 transform hover:scale-110"
-                data-testid="instagram-link"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
+            <div className="flex gap-3 mt-6">
+              {[Linkedin, Twitter, Instagram].map((Icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="w-10 h-10 bg-white/5 hover:bg-white/10 rounded-lg flex items-center justify-center text-gray-500 hover:text-white transition-all duration-300"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-col">
-            <h3 className="text-lg font-semibold mb-6 text-white">Quick Links</h3>
+          <div>
+            <h4 className="text-white font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              <li>
-                <a href="#home" className="text-gray-400 hover:text-white transition-colors inline-block">Home</a>
-              </li>
-              <li>
-                <a href="#regions" className="text-gray-400 hover:text-white transition-colors inline-block">Regions</a>
-              </li>
-              <li>
-                <a href="#about" className="text-gray-400 hover:text-white transition-colors inline-block">About Us</a>
-              </li>
-              <li>
-                <a href="#testimonials" className="text-gray-400 hover:text-white transition-colors inline-block">Testimonials</a>
-              </li>
-              <li>
-                <a href="#faq" className="text-gray-400 hover:text-white transition-colors inline-block">FAQ</a>
-              </li>
+              {['Home', 'Services', 'Regions', 'About', 'Testimonials', 'FAQ'].map((item) => (
+                <li key={item}>
+                  <a 
+                    href={`#${item.toLowerCase()}`} 
+                    className="text-gray-500 hover:text-white text-sm transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Services */}
-          <div className="flex flex-col">
-            <h3 className="text-lg font-semibold mb-6 text-white">Our Services</h3>
+          <div>
+            <h4 className="text-white font-semibold mb-6">Services</h4>
             <ul className="space-y-3">
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors inline-block">Healthcare Recruitment</a>
+              {['Healthcare Recruitment', 'CV Preparation', 'Interview Coaching', 'Relocation Support', 'Visa Assistance'].map((item) => (
+                <li key={item}>
+                  <a 
+                    href="#services" 
+                    className="text-gray-500 hover:text-white text-sm transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-white font-semibold mb-6">Contact</h4>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <Mail className="h-4 w-4 text-gray-500 mt-1" />
+                <a href="mailto:info@fesaglobal.com" className="text-gray-500 hover:text-white text-sm transition-colors">
+                  info@fesaglobal.com
+                </a>
               </li>
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors inline-block">CV Preparation</a>
+              <li className="flex items-start gap-3">
+                <Phone className="h-4 w-4 text-gray-500 mt-1" />
+                <a href="tel:+919744977949" className="text-gray-500 hover:text-white text-sm transition-colors">
+                  +91 97449 77949
+                </a>
               </li>
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors inline-block">Interview Coaching</a>
-              </li>
-              <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors inline-block">Relocation Support</a>
+              <li className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 text-gray-500 mt-1" />
+                <span className="text-gray-500 text-sm">
+                  Kollam, Kerala, India
+                </span>
               </li>
             </ul>
           </div>
         </div>
 
-        <hr className="border-gray-800 my-8" />
-
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} RJ Associates. All rights reserved.
+        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-600 text-sm">
+            © {currentYear} Fesa Global. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
-              Terms of Service
-            </a>
-            <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
-              Cookie Policy
-            </a>
+          <div className="flex gap-6">
+            {['Privacy Policy', 'Terms of Service', 'Cookies'].map((item) => (
+              <a 
+                key={item} 
+                href="#" 
+                className="text-gray-600 hover:text-gray-400 text-sm transition-colors"
+              >
+                {item}
+              </a>
+            ))}
           </div>
         </div>
       </div>
