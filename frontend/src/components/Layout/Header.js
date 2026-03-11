@@ -3,15 +3,12 @@ import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show header only after scrolling past 80% of viewport height
-      const scrollThreshold = window.innerHeight * 0.8;
-      setIsVisible(window.scrollY > scrollThreshold);
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -24,33 +21,36 @@ const Header = () => {
     { name: 'Stories', href: '#testimonials' },
   ];
 
-  // Don't render if not visible
-  if (!isVisible) return null;
-
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black/95 backdrop-blur-xl border-b border-white/5 animate-slideDown`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-black/90 backdrop-blur-xl border-b border-white/5' 
+          : 'bg-transparent'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo */}
           <a href="#home" className="text-xl sm:text-2xl font-bold text-white tracking-tight">
             Fesa<span className="font-light text-gray-400">Global</span>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm text-gray-400 hover:text-white transition-colors"
+                className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
               >
                 {item.name}
               </a>
             ))}
             <a 
               href="#contact" 
-              className="px-5 py-2 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-all"
+              className="ml-4 px-5 py-2 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-all"
+              data-testid="get-started-btn"
             >
               Get Started
             </a>
@@ -58,16 +58,17 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white p-2"
+            className="lg:hidden text-white p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            data-testid="mobile-menu-btn"
           >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden absolute left-0 right-0 top-14 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
+          <div className="lg:hidden absolute left-0 right-0 top-16 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <a
