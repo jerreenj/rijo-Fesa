@@ -18,12 +18,19 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Prevent horizontal scroll on mobile */
+/* Prevent horizontal scroll */
 html, body {
-  overflow-x: hidden;
   max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Ensure all sections don't overflow */
+section {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Mobile viewport fix */
@@ -42,10 +49,6 @@ html, body {
   animation: slideDown 0.3s ease-out;
 }
 
-.animate-slideUp {
-  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -56,12 +59,7 @@ html, body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideUp {
-  from { transform: translateY(40px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* Custom scrollbar - thin on mobile */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -75,17 +73,11 @@ html, body {
   border-radius: 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #444;
-}
-
-/* For Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: #333 #0a0a0a;
 }
 
-/* Remove outline for non-keyboard focus */
 :focus:not(:focus-visible) {
   outline: none;
 }
@@ -97,7 +89,6 @@ html, body {
   }
 }
 
-/* Smooth momentum scrolling on iOS */
 .overflow-y-auto {
   -webkit-overflow-scrolling: touch;
 }
