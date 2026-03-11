@@ -1,53 +1,77 @@
 import React from 'react';
-import { Stethoscope, FileText, Plane, Car } from 'lucide-react';
+import { Stethoscope, FileText, Plane, GraduationCap, ArrowUpRight } from 'lucide-react';
 
-const ServiceCard = ({ icon, title, description }) => {
-  return (
-    <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300 group hover:shadow-lg hover:shadow-blue-500/5 transform hover:scale-105">
-      <div className="flex flex-col items-center text-center">
-        <div className="w-14 h-14 bg-blue-600/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-blue-600/20 transition-colors duration-300">
-          {icon}
-        </div>
-        <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
-        <p className="text-gray-400">{description}</p>
-      </div>
-    </div>
-  );
-};
+const services = [
+  {
+    icon: Stethoscope,
+    title: 'Healthcare Recruitment',
+    description: 'Specialized placement for doctors, nurses, and medical professionals in leading European healthcare institutions.',
+    features: ['Hospital placements', 'Clinic positions', 'Specialist roles']
+  },
+  {
+    icon: FileText,
+    title: 'CV & Application',
+    description: 'Professional assistance crafting compelling CVs tailored to European standards and employer expectations.',
+    features: ['CV optimization', 'Cover letters', 'Portfolio review']
+  },
+  {
+    icon: GraduationCap,
+    title: 'Interview Coaching',
+    description: 'Comprehensive preparation for interviews with mock sessions and expert feedback to boost confidence.',
+    features: ['Mock interviews', 'Feedback sessions', 'Cultural prep']
+  },
+  {
+    icon: Plane,
+    title: 'Relocation Support',
+    description: 'End-to-end assistance with moving to a new country, from paperwork to settling in.',
+    features: ['Visa assistance', 'Housing support', 'Onboarding help']
+  },
+];
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-24 bg-gradient-to-b from-black to-gray-900" data-testid="services-section">
-      <div className="container mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Our Specialized Services</h2>
-          <p className="text-gray-400">
-            We provide comprehensive recruitment solutions in the healthcare sector,
-            connecting talented professionals with premium opportunities across Europe.
+    <section id="services" className="py-32 bg-black relative" data-testid="services-section">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)]"></div>
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="max-w-2xl mb-16">
+          <span className="text-sm text-gray-500 uppercase tracking-wider">What we offer</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+            Services Tailored
+            <br />
+            <span className="text-gray-500">For Your Success</span>
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Comprehensive recruitment solutions designed to connect talented professionals with exceptional European opportunities.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <ServiceCard
-            icon={<Stethoscope className="h-7 w-7 text-blue-500" />}
-            title="Healthcare Recruitment"
-            description="Specialized recruitment for doctors, nurses, medical technicians, and all healthcare professionals across European hospitals and clinics."
-          />
-          <ServiceCard
-            icon={<FileText className="h-7 w-7 text-blue-500" />}
-            title="CV & Application Support"
-            description="Professional assistance with crafting compelling CVs and job applications tailored to European standards and employer expectations."
-          />
-          <ServiceCard
-            icon={<Car className="h-7 w-7 text-blue-500" />}
-            title="Driving Lessons"
-            description="Comprehensive European driving lessons in Kerala to prepare you for international driving. Get ready to navigate European roads with confidence."
-          />
-          <ServiceCard
-            icon={<Plane className="h-7 w-7 text-blue-500" />}
-            title="Relocation Assistance"
-            description="Comprehensive support with relocating to a new country, including paperwork, accommodation, and settling-in services."
-          />
+        <div className="grid md:grid-cols-2 gap-6">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="group p-8 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-white/[0.04] hover:border-white/10 transition-all duration-500"
+            >
+              <div className="flex items-start justify-between mb-6">
+                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                  <service.icon className="h-6 w-6 text-white" />
+                </div>
+                <ArrowUpRight className="h-5 w-5 text-gray-600 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+              </div>
+              
+              <h3 className="text-xl font-semibold text-white mb-3">{service.title}</h3>
+              <p className="text-gray-500 mb-6 leading-relaxed">{service.description}</p>
+              
+              <div className="flex flex-wrap gap-2">
+                {service.features.map((feature, i) => (
+                  <span key={i} className="px-3 py-1 bg-white/5 text-gray-400 text-sm rounded-full">
+                    {feature}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
