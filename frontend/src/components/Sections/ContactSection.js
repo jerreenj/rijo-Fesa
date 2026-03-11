@@ -1,198 +1,154 @@
 import React, { useState } from 'react';
-import Button from '../UI/Button';
-import { Mail, MapPin, Send, Phone } from 'lucide-react';
+import { Send, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     phone: '',
-    subject: '',
     message: ''
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const body = `
-Name: ${formData.name}
-Phone: ${formData.phone}
-
-Subject: ${formData.subject}
-
-Message:
-${formData.message}
-    `.trim();
-    
-    const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=rjassociateskerala@gmail.com&subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(body)}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`;
+    const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=info@fesaglobal.com&subject=Consultation Request from ${formData.name}&body=${encodeURIComponent(body)}`;
     
     window.open(mailtoUrl, '_blank');
-    
-    setFormData({
-      name: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
-    
-    toast.success('Opening Gmail...');
+    setFormData({ name: '', email: '', phone: '', message: '' });
+    toast.success('Opening email client...');
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
-    <section id="contact" className="py-24 bg-black" data-testid="contact-section">
-      <Toaster position="top-right" />
-      <div className="container mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Get In Touch</h2>
-          <p className="text-gray-400">
-            Ready to take the next step in your career? Have questions about our services? 
-            Send us an email and we'll get back to you as soon as possible.
-          </p>
-        </div>
-        
-        <div className="flex flex-col lg:flex-row gap-12">
-          <div className="lg:w-1/2">
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-xl border border-gray-700 h-full transform hover:scale-[1.02] transition-all duration-300">
-              <h3 className="text-2xl font-semibold text-white mb-6">Send Us a Message</h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-gray-300 mb-2">Full Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Your name"
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      data-testid="contact-name-input"
-                    />
+    <section id="contact" className="py-32 bg-black relative" data-testid="contact-section">
+      <Toaster position="top-right" toastOptions={{ style: { background: '#1a1a1a', color: '#fff', border: '1px solid #333' } }} />
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16">
+          {/* Left - Contact Info */}
+          <div>
+            <span className="text-sm text-gray-500 uppercase tracking-wider">Contact</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+              Let's Start a
+              <br />
+              <span className="text-gray-500">Conversation</span>
+            </h2>
+            <p className="text-gray-400 leading-relaxed mb-10">
+              Ready to take the next step in your career? Get in touch with our team and let's discuss your opportunities.
+            </p>
+
+            <div className="space-y-6">
+              {[
+                { icon: Mail, label: 'Email', value: 'info@fesaglobal.com', href: 'mailto:info@fesaglobal.com' },
+                { icon: Phone, label: 'Phone', value: '+91 97449 77949', href: 'tel:+919744977949' },
+                { icon: MapPin, label: 'Location', value: 'Kollam, Kerala, India' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-4 group">
+                  <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                    <item.icon className="h-5 w-5 text-gray-400" />
                   </div>
-                  
                   <div>
-                    <label htmlFor="phone" className="block text-gray-300 mb-2">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      placeholder="Your phone number"
-                      className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                      data-testid="contact-phone-input"
-                    />
+                    <div className="text-gray-500 text-sm">{item.label}</div>
+                    {item.href ? (
+                      <a href={item.href} className="text-white hover:text-gray-300 transition-colors">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <div className="text-white">{item.value}</div>
+                    )}
                   </div>
                 </div>
-                
+              ))}
+            </div>
+
+            {/* WhatsApp CTA */}
+            <a
+              href="https://wa.me/919744377949"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 mt-10 px-6 py-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition-all"
+            >
+              <Send className="h-5 w-5" />
+              Message us on WhatsApp
+            </a>
+          </div>
+
+          {/* Right - Form */}
+          <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8">
+            <h3 className="text-xl font-semibold text-white mb-6">Send us a message</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="subject" className="block text-gray-300 mb-2">Subject</label>
+                  <label className="block text-gray-400 text-sm mb-2">Full Name</label>
                   <input
                     type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
+                    name="name"
+                    value={formData.name}
                     onChange={handleChange}
                     required
-                    placeholder="How can we help you?"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                    data-testid="contact-subject-input"
+                    placeholder="John Doe"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-white/20 transition-colors"
+                    data-testid="contact-name-input"
                   />
                 </div>
-                
                 <div>
-                  <label htmlFor="message" className="block text-gray-300 mb-2">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
+                  <label className="block text-gray-400 text-sm mb-2">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    placeholder="Your message"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all duration-300"
-                    data-testid="contact-message-input"
-                  ></textarea>
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  variant="primary" 
-                  className="w-full group"
-                >
-                  <Send className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  Continue in Gmail
-                </Button>
-              </form>
-            </div>
-          </div>
-          
-          <div className="lg:w-1/2">
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-xl border border-gray-700 h-full transform hover:scale-[1.02] transition-all duration-300">
-              <h3 className="text-2xl font-semibold text-white mb-6">Contact Information</h3>
-              
-              <div className="space-y-8">
-                <div className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
-                  <div className="bg-blue-600/10 p-3 rounded-lg mr-4">
-                    <Mail className="h-6 w-6 text-blue-500" />
-                  </div>
-                  <div>
-                    <h4 className="text-gray-300 font-medium">Email Us</h4>
-                    <a 
-                      href="https://mail.google.com/mail/?view=cm&fs=1&to=rjassociateskerala@gmail.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-400 hover:text-blue-300 transition-colors block mt-2"
-                    >
-                      rjassociateskerala@gmail.com
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
-                  <div className="bg-blue-600/10 p-3 rounded-lg mr-4">
-                    <Phone className="h-6 w-6 text-blue-500" />
-                  </div>
-                  <div>
-                    <h4 className="text-gray-300 font-medium">Call Us</h4>
-                    <a 
-                      href="tel:+919744977949"
-                      className="text-blue-400 hover:text-blue-300 transition-colors block mt-2"
-                    >
-                      +91 97449 77949
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-start transform hover:translate-x-2 transition-transform duration-300">
-                  <div className="bg-blue-600/10 p-3 rounded-lg mr-4">
-                    <MapPin className="h-6 w-6 text-blue-500" />
-                  </div>
-                  <div>
-                    <h4 className="text-gray-300 font-medium">Visit Our Office</h4>
-                    <p className="text-white mt-2">
-                      527/1, Padippurayil Building<br />
-                      Kuthirachira<br />
-                      Punalur<br />
-                      Kollam<br />
-                      Kerala<br />
-                      691305
-                    </p>
-                  </div>
+                    placeholder="john@example.com"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-white/20 transition-colors"
+                    data-testid="contact-email-input"
+                  />
                 </div>
               </div>
-            </div>
+              
+              <div>
+                <label className="block text-gray-400 text-sm mb-2">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="+91 98765 43210"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-white/20 transition-colors"
+                  data-testid="contact-phone-input"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-gray-400 text-sm mb-2">Message</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={4}
+                  placeholder="Tell us about your career goals..."
+                  className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-600 focus:outline-none focus:border-white/20 transition-colors resize-none"
+                  data-testid="contact-message-input"
+                />
+              </div>
+              
+              <button
+                type="submit"
+                className="group w-full flex items-center justify-center gap-2 px-6 py-4 bg-white text-black font-medium rounded-xl hover:bg-gray-200 transition-all"
+              >
+                Send Message
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </form>
           </div>
         </div>
       </div>
