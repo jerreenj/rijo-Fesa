@@ -28,8 +28,13 @@ const HeroSection = () => {
             <span className="text-white ml-3 sm:ml-4">GLOBAL</span>
           </h1>
           
+          {/* Subtitle */}
+          <p className="mt-2 sm:mt-3 text-gray-500 text-sm sm:text-base tracking-[0.15em] uppercase">
+            Recruitment Services LLP
+          </p>
+          
           {/* Tagline */}
-          <p className="mt-4 sm:mt-6 text-gray-400 text-base sm:text-lg md:text-xl max-w-xl mx-auto">
+          <p className="mt-4 sm:mt-5 text-gray-400 text-base sm:text-lg md:text-xl max-w-xl mx-auto">
             Connecting global experts with trusted employers.
           </p>
         </div>
