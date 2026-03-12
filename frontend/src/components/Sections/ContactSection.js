@@ -44,7 +44,7 @@ const ContactSection = () => {
             <div className="space-y-4 sm:space-y-6">
               {[
                 { icon: Mail, label: 'Email', value: 'info@fesaglobal.com', href: 'mailto:info@fesaglobal.com' },
-                { icon: Phone, label: 'Phone', value: '+91 97449 77949', href: 'tel:+919744977949' },
+                { icon: Phone, label: 'Phone', value: '+91 97443 77949', href: 'tel:+919744377949' },
                 { icon: MapPin, label: 'Location', value: 'Kollam, Kerala, India' },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 sm:gap-4 group">
