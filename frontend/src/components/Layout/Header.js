@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const LOGO_URL = 'https://customer-assets.emergentagent.com/job_1656f242-b31d-4d9c-afe3-e0ace3c147eb/artifacts/lv38agrs_photo_2026-03-11_22-00-53.jpg';
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,17 +30,9 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-20 sm:h-24">
-          {/* Logo - Top Left - Larger */}
-          <a href="#home" className="flex-shrink-0" data-testid="logo">
-            <img 
-              src={LOGO_URL} 
-              alt="Fesa Global" 
-              className="h-14 sm:h-16 md:h-20 w-auto object-contain"
-            />
-          </a>
+        <div className="flex items-center justify-center h-16 sm:h-20">
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Centered */}
           <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => (
               <a
@@ -64,7 +54,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-white p-2"
+            className="lg:hidden text-white p-2 absolute right-4"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             data-testid="mobile-menu-btn"
           >
@@ -74,7 +64,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute left-0 right-0 top-20 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
+          <div className="lg:hidden absolute left-0 right-0 top-16 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <a
