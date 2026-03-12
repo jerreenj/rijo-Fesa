@@ -20,7 +20,7 @@ const Footer = () => {
               />
             </a>
             <p className="mt-4 sm:mt-6 text-gray-500 text-xs sm:text-sm leading-relaxed">
-              Connecting exceptional talent with world-class opportunities across Europe.
+              Connecting global experts with trusted employers.
             </p>
             <div className="flex gap-2 sm:gap-3 mt-4 sm:mt-6">
               {[Linkedin, Twitter, Instagram].map((Icon, i) => (
@@ -81,8 +81,8 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 sm:gap-3">
                 <Phone className="h-4 w-4 text-gray-500 mt-0.5 flex-shrink-0" />
-                <a href="tel:+919744977949" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors">
-                  +91 97449 77949
+                <a href="tel:+919744377949" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors">
+                  +91 97443 77949
                 </a>
               </li>
             </ul>
