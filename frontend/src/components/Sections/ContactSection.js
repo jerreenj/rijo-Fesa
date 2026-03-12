@@ -42,27 +42,43 @@ const ContactSection = () => {
             </p>
 
             <div className="space-y-4 sm:space-y-6">
-              {[
-                { icon: Mail, label: 'Email', value: 'info@fesaglobal.com', href: 'mailto:info@fesaglobal.com' },
-                { icon: Phone, label: 'Phone', value: '+91 97443 77949', href: 'tel:+919744377949' },
-                { icon: MapPin, label: 'Location', value: 'Kollam, Kerala, India' },
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 sm:gap-4 group">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-white/10 transition-colors flex-shrink-0">
-                    <item.icon className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
-                  </div>
-                  <div>
-                    <div className="text-gray-500 text-xs sm:text-sm">{item.label}</div>
-                    {item.href ? (
-                      <a href={item.href} className="text-white text-sm sm:text-base hover:text-gray-300 transition-colors">
-                        {item.value}
-                      </a>
-                    ) : (
-                      <div className="text-white text-sm sm:text-base">{item.value}</div>
-                    )}
+              <div className="flex items-start gap-3 sm:gap-4 group">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-white/10 transition-colors flex-shrink-0">
+                  <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                </div>
+                <div>
+                  <div className="text-gray-500 text-xs sm:text-sm">Email</div>
+                  <a href="mailto:info@fesaglobal.com" className="text-white text-sm sm:text-base hover:text-gray-300 transition-colors">
+                    info@fesaglobal.com
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3 sm:gap-4 group">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-white/10 transition-colors flex-shrink-0">
+                  <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                </div>
+                <div>
+                  <div className="text-gray-500 text-xs sm:text-sm">Phone</div>
+                  <a href="tel:+919744377949" className="text-white text-sm sm:text-base hover:text-gray-300 transition-colors">
+                    +91 97443 77949
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3 sm:gap-4 group">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-white/10 transition-colors flex-shrink-0">
+                  <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" />
+                </div>
+                <div>
+                  <div className="text-gray-500 text-xs sm:text-sm">Location</div>
+                  <div className="text-white text-sm sm:text-base">
+                    328/3, Prince Building,<br />
+                    Near St Goretti School Punalur,<br />
+                    Punalur, India, 691305
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
 
             <a
