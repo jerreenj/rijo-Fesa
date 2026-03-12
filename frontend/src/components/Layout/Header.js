@@ -32,17 +32,17 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo - Top Left */}
+        <div className="flex items-center justify-between h-20 sm:h-24">
+          {/* Logo - Top Left - Larger */}
           <a href="#home" className="flex-shrink-0" data-testid="logo">
             <img 
               src={LOGO_URL} 
               alt="Fesa Global" 
-              className="h-10 sm:h-12 w-auto object-contain"
+              className="h-14 sm:h-16 md:h-20 w-auto object-contain"
             />
           </a>
 
-          {/* Desktop Navigation - Centered */}
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => (
               <a
@@ -74,7 +74,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute left-0 right-0 top-16 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
+          <div className="lg:hidden absolute left-0 right-0 top-20 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <a

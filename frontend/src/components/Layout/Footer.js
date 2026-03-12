@@ -1,7 +1,7 @@
 import React from 'react';
 import { Linkedin, Twitter, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 
-const LOGO_URL = 'https://customer-assets.emergentagent.com/job_1656f242-b31d-4d9c-afe3-e0ace3c147eb/artifacts/qs63khcz_photo_2026-03-11_22-00-53.jpg';
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_1656f242-b31d-4d9c-afe3-e0ace3c147eb/artifacts/lv38agrs_photo_2026-03-11_22-00-53.jpg';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,7 +16,7 @@ const Footer = () => {
               <img 
                 src={LOGO_URL} 
                 alt="Fesa Global" 
-                className="h-12 sm:h-14 w-auto object-contain"
+                className="h-14 sm:h-16 w-auto object-contain"
               />
             </a>
             <p className="mt-4 sm:mt-6 text-gray-500 text-xs sm:text-sm leading-relaxed">
@@ -84,6 +84,14 @@ const Footer = () => {
                 <a href="tel:+919744377949" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors">
                   +91 97443 77949
                 </a>
+              </li>
+              <li className="flex items-start gap-2 sm:gap-3">
+                <MapPin className="h-4 w-4 text-gray-500 mt-0.5 flex-shrink-0" />
+                <span className="text-gray-500 text-xs sm:text-sm">
+                  328/3, Prince Building,<br />
+                  Near St Goretti School,<br />
+                  Punalur, India, 691305
+                </span>
               </li>
             </ul>
           </div>
