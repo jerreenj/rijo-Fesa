@@ -6,22 +6,19 @@ const BG_IMAGE_URL = 'https://images.unsplash.com/photo-1513635269975-59663e0ac1
 const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen min-h-[100dvh] bg-black flex flex-col items-center justify-center overflow-hidden px-4" data-testid="hero-section">
-      {/* Background Image with Blur */}
+      {/* Background Image with Blur - More Visible */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${BG_IMAGE_URL})`,
-          filter: 'blur(8px)',
-          opacity: 0.2,
-          transform: 'scale(1.1)'
+          filter: 'blur(4px)',
+          opacity: 0.6,
+          transform: 'scale(1.05)'
         }}
       ></div>
       
-      {/* Dark overlay for better contrast */}
-      <div className="absolute inset-0 bg-black/60"></div>
-      
-      {/* Subtle radial gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)]"></div>
+      {/* Lighter overlay for better visibility */}
+      <div className="absolute inset-0 bg-black/30"></div>
       
       {/* Main content - centered logo only */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-5xl mx-auto">
