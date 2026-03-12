@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_1656f242-b31d-4d9c-afe3-e0ace3c147eb/artifacts/lv38agrs_photo_2026-03-11_22-00-53.jpg';
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,8 +31,17 @@ const Header = () => {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-center h-16 sm:h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo - Top Left */}
+          <a href="#home" className="flex-shrink-0" data-testid="logo">
+            <img 
+              src={LOGO_URL} 
+              alt="Fesa Global" 
+              className="h-10 sm:h-12 w-auto object-contain"
+            />
+          </a>
+
           {/* Desktop Navigation - Centered */}
           <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => (
@@ -70,7 +81,7 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-base text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 text-center"
+                  className="text-base text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5"
                 >
                   {item.name}
                 </a>
