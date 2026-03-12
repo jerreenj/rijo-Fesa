@@ -1,5 +1,6 @@
 import React from 'react';
-import RotatingEarth from '../ui/WireframeDottedGlobe';
+
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_fesa-recruitment/artifacts/pa11j8us_WhatsApp%20Image%202026-03-11%20at%208.16.40%20PM.jpeg';
 
 const HeroSection = () => {
   return (
@@ -7,36 +8,17 @@ const HeroSection = () => {
       {/* Subtle radial gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)]"></div>
       
-      {/* Main content - centered */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-5xl mx-auto pt-16">
+      {/* Main content - centered logo only */}
+      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-5xl mx-auto">
         
-        {/* Globe - responsive and prominent */}
-        <div className="relative w-full flex justify-center mb-6 sm:mb-8">
-          <div className="w-[280px] sm:w-[380px] md:w-[450px] lg:w-[500px]">
-            <RotatingEarth 
-              width={500} 
-              height={500} 
-              className="w-full" 
-            />
-          </div>
-        </div>
-
-        {/* Company Name - styled like logo font */}
-        <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-wide" style={{ fontFamily: "'Orbitron', 'Audiowide', sans-serif" }}>
-            <span className="text-[#00CED1]">FESA</span>
-            <span className="text-[#00CED1] ml-3 sm:ml-4">GLOBAL</span>
-          </h1>
-          
-          {/* Subtitle */}
-          <p className="mt-2 sm:mt-3 text-gray-400 text-sm sm:text-base tracking-[0.2em] uppercase">
-            Recruitment Services LLP
-          </p>
-          
-          {/* Tagline */}
-          <p className="mt-4 sm:mt-5 text-gray-400 text-base sm:text-lg md:text-xl max-w-xl mx-auto">
-            Connecting global experts with trusted employers.
-          </p>
+        {/* Logo - centered and prominent */}
+        <div className="flex justify-center items-center">
+          <img 
+            src={LOGO_URL} 
+            alt="Fesa Global" 
+            className="w-[280px] sm:w-[380px] md:w-[450px] lg:w-[500px] h-auto object-contain"
+            data-testid="hero-logo"
+          />
         </div>
       </div>
     </section>
