@@ -66,7 +66,7 @@ const RegionsSection = () => {
               {/* Image */}
               <div className="aspect-[16/9] md:aspect-auto md:h-full overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=800&q=80"
+                  src="https://images.unsplash.com/photo-1734472474125-300c4c1b336b?w=800&q=80"
                   alt="Ireland"
                   className="w-full h-full object-cover"
                 />
