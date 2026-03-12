@@ -179,7 +179,11 @@ export function TestimonialsMarquee({
           <div className="bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 sm:p-8 w-full max-w-md max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-semibold text-white">Share Your Story</h3>
-              <button onClick={() => setShowForm(false)} className="text-gray-500 hover:text-white">
+              <button 
+                onClick={() => setShowForm(false)} 
+                className="text-gray-500 hover:text-white p-2 -mr-2 rounded-lg hover:bg-white/10 transition-colors"
+                type="button"
+              >
                 <X className="h-5 w-5" />
               </button>
             </div>
