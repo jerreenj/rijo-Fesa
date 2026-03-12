@@ -21,15 +21,15 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Company Name - centered below globe */}
+        {/* Company Name - styled like logo font */}
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-wide" style={{ fontFamily: "'Orbitron', 'Audiowide', sans-serif" }}>
             <span className="text-[#00CED1]">FESA</span>
-            <span className="text-white ml-3 sm:ml-4">GLOBAL</span>
+            <span className="text-[#00CED1] ml-3 sm:ml-4">GLOBAL</span>
           </h1>
           
           {/* Subtitle */}
-          <p className="mt-2 sm:mt-3 text-gray-500 text-sm sm:text-base tracking-[0.15em] uppercase">
+          <p className="mt-2 sm:mt-3 text-gray-400 text-sm sm:text-base tracking-[0.2em] uppercase">
             Recruitment Services LLP
           </p>
           
