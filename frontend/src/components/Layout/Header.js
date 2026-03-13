@@ -27,7 +27,7 @@ const Header = () => {
     <>
       {/* Logo - Fixed top left, only on hero */}
       {!isScrolled && (
-        <div className="fixed z-50" style={{ top: 0, left: 0, margin: 0, padding: 0 }}>
+        <div className="fixed z-50" style={{ top: '-20px', left: '-10px', margin: 0, padding: 0 }}>
           <a href="#home" style={{ display: 'block', lineHeight: 0 }}>
             <img 
               src={LOGO_URL} 
