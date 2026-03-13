@@ -25,14 +25,14 @@ const Header = () => {
 
   return (
     <>
-      {/* Logo - Fixed top left, only on hero */}
+      {/* Logo - Fixed top left, aligned with nav bar */}
       {!isScrolled && (
-        <div className="fixed z-50" style={{ top: '-20px', left: '-10px', margin: 0, padding: 0 }}>
-          <a href="#home" style={{ display: 'block', lineHeight: 0 }}>
+        <div className="fixed z-50" style={{ top: '10px', left: '20px' }}>
+          <a href="#home" style={{ display: 'block' }}>
             <img 
               src={LOGO_URL} 
               alt="Fesa Global" 
-              style={{ height: '300px', width: 'auto', display: 'block', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
+              style={{ height: '70px', width: 'auto', display: 'block', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
             />
           </a>
         </div>
