@@ -1,7 +1,6 @@
 import React from 'react';
 
 const BG_IMAGE_URL = 'https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1920&q=80';
-const LOGO_URL = 'https://customer-assets.emergentagent.com/job_fesa-recruitment/artifacts/fk8w3ch4_FESA%20Global%20LOGO%20B%26W-01%20%281%29.png';
 
 const HeroSection = () => {
   return (
@@ -18,20 +17,6 @@ const HeroSection = () => {
       
       {/* Light overlay */}
       <div className="absolute inset-0 bg-black/10"></div>
-      
-      {/* Logo - top left, no spacing */}
-      <div className="absolute top-0 left-0 z-10">
-        <img 
-          src={LOGO_URL} 
-          alt="Fesa Global" 
-          className="w-[280px] sm:w-[350px] md:w-[420px] lg:w-[500px] h-auto"
-          style={{
-            opacity: 0.9,
-            filter: 'drop-shadow(0 2px 10px rgba(255, 255, 255, 0.3))'
-          }}
-          data-testid="hero-logo"
-        />
-      </div>
     </section>
   );
 };
