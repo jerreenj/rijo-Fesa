@@ -40,7 +40,7 @@ const Header = () => {
               <img 
                 src={LOGO_URL} 
                 alt="Fesa Global" 
-                className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto"
+                className="h-24 sm:h-32 md:h-40 lg:h-48 w-auto"
                 style={{ filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
               />
             </a>
