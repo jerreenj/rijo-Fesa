@@ -13,7 +13,7 @@ const ContactSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`;
-    const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=info@fesaglobal.com&subject=Consultation Request from ${formData.name}&body=${encodeURIComponent(body)}`;
+    const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=info@fesaglobal.in&subject=Consultation Request from ${formData.name}&body=${encodeURIComponent(body)}`;
     window.open(mailtoUrl, '_blank');
     setFormData({ name: '', email: '', phone: '', message: '' });
     toast.success('Opening email client...');
@@ -48,8 +48,8 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div className="text-gray-500 text-xs sm:text-sm">Email</div>
-                  <a href="mailto:info@fesaglobal.com" className="text-white text-sm sm:text-base hover:text-gray-300 transition-colors">
-                    info@fesaglobal.com
+                  <a href="mailto:info@fesaglobal.in" className="text-white text-sm sm:text-base hover:text-gray-300 transition-colors">
+                    info@fesaglobal.in
                   </a>
                 </div>
               </div>
