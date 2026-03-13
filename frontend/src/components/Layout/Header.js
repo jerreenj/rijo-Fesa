@@ -27,13 +27,12 @@ const Header = () => {
     <>
       {/* Logo - Fixed top left, only on hero */}
       {!isScrolled && (
-        <div className="fixed top-0 left-0 z-50">
-          <a href="#home">
+        <div className="fixed z-50" style={{ top: 0, left: 0, margin: 0, padding: 0 }}>
+          <a href="#home" style={{ display: 'block', lineHeight: 0 }}>
             <img 
               src={LOGO_URL} 
               alt="Fesa Global" 
-              className="w-auto"
-              style={{ height: '250px', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
+              style={{ height: '300px', width: 'auto', display: 'block', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
             />
           </a>
         </div>
