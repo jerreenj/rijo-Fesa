@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BG_IMAGE_URL = 'https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1920&q=80';
+const BG_IMAGE_URL = 'https://customer-assets.emergentagent.com/job_fesa-recruitment/artifacts/2szu7ux9_photo_2026-03-13_10-38-13.jpg';
 
 const HeroSection = () => {
   return (
