@@ -25,17 +25,31 @@ const Header = () => {
 
   return (
     <>
-      {/* Logo - Fixed top left, aligned with nav bar */}
+      {/* Logo - Desktop: top left aligned with nav | Mobile: centered in hero */}
       {!isScrolled && (
-        <div className="fixed z-50" style={{ top: '-70px', left: '10px' }}>
-          <a href="#home" style={{ display: 'block' }}>
-            <img 
-              src={LOGO_URL} 
-              alt="Fesa Global" 
-              style={{ height: '300px', width: 'auto', display: 'block', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
-            />
-          </a>
-        </div>
+        <>
+          {/* Desktop Logo - top left */}
+          <div className="fixed z-50 hidden lg:block" style={{ top: '-70px', left: '10px' }}>
+            <a href="#home" style={{ display: 'block' }}>
+              <img 
+                src={LOGO_URL} 
+                alt="Fesa Global" 
+                style={{ height: '300px', width: 'auto', display: 'block', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
+              />
+            </a>
+          </div>
+          
+          {/* Mobile Logo - centered in hero */}
+          <div className="fixed z-50 lg:hidden" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+            <a href="#home" style={{ display: 'block' }}>
+              <img 
+                src={LOGO_URL} 
+                alt="Fesa Global" 
+                style={{ height: '200px', width: 'auto', display: 'block', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
+              />
+            </a>
+          </div>
+        </>
       )}
 
       {/* Header with nav only - completely independent */}
