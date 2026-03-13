@@ -20,11 +20,11 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-black/10"></div>
       
       {/* Logo - top left */}
-      <div className="absolute top-24 left-6 sm:top-28 sm:left-10 md:left-16 z-10">
+      <div className="absolute top-4 left-4 sm:top-5 sm:left-6 md:left-10 z-10">
         <img 
           src={LOGO_URL} 
           alt="Fesa Global" 
-          className="w-[180px] sm:w-[220px] md:w-[280px] lg:w-[320px] h-auto"
+          className="w-[140px] sm:w-[160px] md:w-[200px] h-auto"
           style={{
             opacity: 0.9,
             filter: 'drop-shadow(0 2px 10px rgba(255, 255, 255, 0.3))'
