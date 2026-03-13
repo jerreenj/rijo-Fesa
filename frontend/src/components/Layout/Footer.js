@@ -75,8 +75,8 @@ const Footer = () => {
             <ul className="space-y-3 sm:space-y-4">
               <li className="flex items-start gap-2 sm:gap-3">
                 <Mail className="h-4 w-4 text-gray-500 mt-0.5 flex-shrink-0" />
-                <a href="mailto:info@fesaglobal.com" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors break-all">
-                  info@fesaglobal.com
+                <a href="mailto:info@fesaglobal.in" className="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors break-all">
+                  info@fesaglobal.in
                 </a>
               </li>
               <li className="flex items-start gap-2 sm:gap-3">
