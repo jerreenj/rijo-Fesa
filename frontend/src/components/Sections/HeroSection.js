@@ -1,11 +1,11 @@
 import React from 'react';
 
-const BG_IMAGE_URL = 'https://images.unsplash.com/photo-1741689944015-972d0db7dea2?w=1920&q=80';
+const BG_IMAGE_URL = 'https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1920&q=80';
 
 const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen min-h-[100dvh] bg-black flex flex-col items-center justify-center overflow-hidden px-4" data-testid="hero-section">
-      {/* Background Image - Colorful Ireland with houses */}
+      {/* Background Image - Cobh Ireland with cathedral and colorful houses */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
