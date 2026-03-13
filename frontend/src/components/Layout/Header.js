@@ -40,7 +40,7 @@ const Header = () => {
           </div>
           
           {/* Mobile Logo - top middle, no whitespace */}
-          <div className="fixed z-50 lg:hidden" style={{ top: '10px', left: '50%', transform: 'translateX(-50%)' }}>
+          <div className="fixed z-50 lg:hidden" style={{ top: '-40px', left: '50%', transform: 'translateX(-50%)' }}>
             <a href="#home" style={{ display: 'block' }}>
               <img 
                 src={LOGO_URL} 
