@@ -5,12 +5,12 @@ const BG_IMAGE_URL = 'https://images.unsplash.com/photo-1671758709662-8df3a62684
 const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen min-h-[100dvh] bg-black overflow-hidden" data-testid="hero-section">
-      {/* Background Image - Cobh Ireland */}
+      {/* Background Image - Dublin sunset */}
       <div 
         className="absolute inset-0 bg-cover"
         style={{
           backgroundImage: `url(${BG_IMAGE_URL})`,
-          backgroundPosition: 'center top',
+          backgroundPosition: 'center bottom',
           opacity: 0.85
         }}
       ></div>
