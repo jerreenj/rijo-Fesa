@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BG_IMAGE_URL = 'https://images.unsplash.com/photo-1510711789248-087061cda288?w=1920&q=100';
+const BG_IMAGE_URL = 'https://images.unsplash.com/photo-1534366352136-70b36caec941?w=1920&q=100';
 
 const HeroSection = () => {
   return (
