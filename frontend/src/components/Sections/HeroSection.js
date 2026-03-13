@@ -19,12 +19,12 @@ const HeroSection = () => {
       {/* Light overlay */}
       <div className="absolute inset-0 bg-black/10"></div>
       
-      {/* Logo - top left */}
-      <div className="absolute top-4 left-4 sm:top-5 sm:left-6 md:left-10 z-10">
+      {/* Logo - top left, larger */}
+      <div className="absolute top-2 left-2 sm:top-3 sm:left-4 z-10">
         <img 
           src={LOGO_URL} 
           alt="Fesa Global" 
-          className="w-[140px] sm:w-[160px] md:w-[200px] h-auto"
+          className="w-[280px] sm:w-[350px] md:w-[420px] lg:w-[500px] h-auto"
           style={{
             opacity: 0.9,
             filter: 'drop-shadow(0 2px 10px rgba(255, 255, 255, 0.3))'
