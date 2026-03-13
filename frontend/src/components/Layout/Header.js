@@ -32,17 +32,19 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className={`flex items-center ${isScrolled ? 'justify-end' : 'justify-between'} h-20 sm:h-24`}>
 
-          {/* Logo - Left */}
-          <a href="#home" className="flex-shrink-0">
-            <img 
-              src={LOGO_URL} 
-              alt="Fesa Global" 
-              className="h-12 sm:h-14 md:h-16 w-auto"
-              style={{ filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
-            />
-          </a>
+          {/* Logo - Left, only visible when not scrolled */}
+          {!isScrolled && (
+            <a href="#home" className="flex-shrink-0">
+              <img 
+                src={LOGO_URL} 
+                alt="Fesa Global" 
+                className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto"
+                style={{ filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
+              />
+            </a>
+          )}
 
           {/* Desktop Navigation - Right */}
           <nav className="hidden lg:flex items-center gap-2">
@@ -76,7 +78,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute left-0 right-0 top-16 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
+          <div className="lg:hidden absolute left-0 right-0 top-20 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <a
