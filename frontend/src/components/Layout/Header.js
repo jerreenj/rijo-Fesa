@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_fesa-recruitment/artifacts/fk8w3ch4_FESA%20Global%20LOGO%20B%26W-01%20%281%29.png';
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,9 +32,19 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-end h-16 sm:h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
 
-          {/* Desktop Navigation - Right aligned */}
+          {/* Logo - Left */}
+          <a href="#home" className="flex-shrink-0">
+            <img 
+              src={LOGO_URL} 
+              alt="Fesa Global" 
+              className="h-12 sm:h-14 md:h-16 w-auto"
+              style={{ filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
+            />
+          </a>
+
+          {/* Desktop Navigation - Right */}
           <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => (
               <a
