@@ -19,8 +19,8 @@ const HeroSection = () => {
       {/* Light overlay */}
       <div className="absolute inset-0 bg-black/10"></div>
       
-      {/* Logo - top left, larger */}
-      <div className="absolute top-2 left-2 sm:top-3 sm:left-4 z-10">
+      {/* Logo - top left, no spacing */}
+      <div className="absolute top-0 left-0 z-10">
         <img 
           src={LOGO_URL} 
           alt="Fesa Global" 
