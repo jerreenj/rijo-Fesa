@@ -27,7 +27,7 @@ const Header = () => {
     <>
       {/* Logo - Fixed top left, only on hero */}
       {!isScrolled && (
-        <div className="fixed top-2 left-4 z-50">
+        <div className="fixed top-0 left-0 z-50">
           <a href="#home">
             <img 
               src={LOGO_URL} 
@@ -39,12 +39,12 @@ const Header = () => {
         </div>
       )}
 
-      {/* Header with nav only */}
+      {/* Header with nav only - completely independent */}
       <header 
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 right-0 z-40 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-black/90 backdrop-blur-xl border-b border-white/5' 
-            : 'bg-transparent'
+            ? 'left-0 bg-black/90 backdrop-blur-xl border-b border-white/5' 
+            : ''
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
