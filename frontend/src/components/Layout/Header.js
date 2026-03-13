@@ -33,7 +33,7 @@ const Header = () => {
               src={LOGO_URL} 
               alt="Fesa Global" 
               className="w-auto"
-              style={{ height: '225px', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
+              style={{ height: '250px', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
             />
           </a>
         </div>
