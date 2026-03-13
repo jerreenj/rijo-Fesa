@@ -41,11 +41,11 @@ function App() {
   return (
     <Layout>
       <HeroSection />
-      <SettlementSection />
       <CtaSection />
       <ServicesSection />
       <RegionsSection />
       <AboutSection />
+      <SettlementSection />
       <TestimonialsSection />
       <FaqSection />
       <ContactSection />
