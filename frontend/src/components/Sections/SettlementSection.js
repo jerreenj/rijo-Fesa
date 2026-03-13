@@ -2,79 +2,33 @@ import React from 'react';
 import { Car, Users, Home, FileText, Heart, MapPin } from 'lucide-react';
 
 const supportServices = [
-  {
-    icon: Car,
-    title: "Driver's License Assistance",
-    description: "We guide you through the entire process of getting your driver's license in Ireland - from paperwork to test preparation, making your transition seamless."
-  },
-  {
-    icon: Users,
-    title: "Cultural Integration",
-    description: "Learn about Irish culture, customs, and workplace etiquette. We help you understand and adapt to your new home quickly."
-  },
-  {
-    icon: Home,
-    title: "Accommodation Support",
-    description: "Finding a place to live made easy. We assist with housing searches, rental processes, and settling into your new neighborhood."
-  },
-  {
-    icon: FileText,
-    title: "Documentation Help",
-    description: "From PPS numbers to bank accounts, we handle all the essential paperwork so you can focus on your new career."
-  },
-  {
-    icon: Heart,
-    title: "Healthcare Registration",
-    description: "Get registered with local GPs and understand the Irish healthcare system with our complete guidance."
-  },
-  {
-    icon: MapPin,
-    title: "Local Area Orientation",
-    description: "Know your surroundings - we provide information about transport, shopping, schools, and community services."
-  }
+  { icon: Car, title: "Driver's License", desc: "Complete guidance for getting your Irish license" },
+  { icon: Users, title: "Culture & Lifestyle", desc: "Understand Irish customs and workplace culture" },
+  { icon: Home, title: "Accommodation", desc: "Help finding your new home" },
+  { icon: FileText, title: "Documentation", desc: "PPS, bank accounts & paperwork" },
+  { icon: Heart, title: "Healthcare", desc: "GP registration & health system" },
+  { icon: MapPin, title: "Local Guidance", desc: "Transport, schools & amenities" }
 ];
 
 const SettlementSection = () => {
   return (
-    <section id="settlement" className="py-20 sm:py-28 bg-gradient-to-b from-black to-gray-900 relative px-4" data-testid="settlement-section">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <span className="text-[#00CED1] text-sm font-medium uppercase tracking-wider">Beyond Recruitment</span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3">
-            We Help You <span className="text-[#00CED1]">Settle In</span>
-          </h2>
-          <p className="mt-4 text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
-            Moving to a new country is more than just finding a job. We support you every step of the way to make Ireland feel like home.
-          </p>
+    <section id="settlement" className="py-16 sm:py-20 bg-black border-t border-white/5 px-4" data-testid="settlement-section">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-10">
+          <h3 className="text-2xl sm:text-3xl font-semibold text-white">
+            We Help You <span className="text-gray-500">Settle In</span>
+          </h3>
+          <p className="mt-2 text-gray-500 text-sm">More than recruitment — complete relocation support</p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {supportServices.map((service, index) => (
-            <div
-              key={index}
-              className="group p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-[#00CED1]/30 hover:bg-white/[0.05] transition-all duration-300"
-            >
-              <div className="w-12 h-12 rounded-xl bg-[#00CED1]/10 flex items-center justify-center mb-5 group-hover:bg-[#00CED1]/20 transition-colors">
-                <service.icon className="w-6 h-6 text-[#00CED1]" />
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-3">{service.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
+            <div key={index} className="text-center p-4">
+              <service.icon className="w-5 h-5 text-gray-400 mx-auto mb-2" />
+              <h4 className="text-white text-sm font-medium mb-1">{service.title}</h4>
+              <p className="text-gray-500 text-xs">{service.desc}</p>
             </div>
           ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <a 
-            href="https://wa.me/919744377949" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#00CED1] text-black font-semibold rounded-full hover:bg-[#00CED1]/90 transition-all"
-          >
-            Get Complete Support
-          </a>
         </div>
       </div>
     </section>
