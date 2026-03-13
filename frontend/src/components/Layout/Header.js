@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const LOGO_URL = 'https://customer-assets.emergentagent.com/job_fesa-recruitment/artifacts/fk8w3ch4_FESA%20Global%20LOGO%20B%26W-01%20%281%29.png';
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_fesa-recruitment/artifacts/6ez0qo6k_FESA%20Global%20LOGO-01.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
