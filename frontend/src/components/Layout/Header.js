@@ -24,84 +24,89 @@ const Header = () => {
   ];
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-black/90 backdrop-blur-xl border-b border-white/5' 
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className={`flex items-center ${isScrolled ? 'justify-end' : 'justify-between'} h-20 sm:h-24`}>
-
-          {/* Logo - Left, only visible when not scrolled */}
-          {!isScrolled && (
-            <a href="#home" className="flex-shrink-0">
-              <img 
-                src={LOGO_URL} 
-                alt="Fesa Global" 
-                className="w-auto"
-                style={{ height: '225px', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
-              />
-            </a>
-          )}
-
-          {/* Desktop Navigation - Right */}
-          <nav className="hidden lg:flex items-center gap-2">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
-            <a 
-              href="#contact" 
-              className="ml-4 px-6 py-2 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-all"
-              data-testid="get-started-btn"
-            >
-              Get Started
-            </a>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden text-white p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            data-testid="mobile-menu-btn"
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+    <>
+      {/* Logo - Fixed top left, only on hero */}
+      {!isScrolled && (
+        <div className="fixed top-2 left-4 z-50">
+          <a href="#home">
+            <img 
+              src={LOGO_URL} 
+              alt="Fesa Global" 
+              className="w-auto"
+              style={{ height: '225px', filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2))' }}
+            />
+          </a>
         </div>
+      )}
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden absolute left-0 right-0 top-20 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
-            <div className="flex flex-col gap-2">
+      {/* Header with nav only */}
+      <header 
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-black/90 backdrop-blur-xl border-b border-white/5' 
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-end h-16 sm:h-20">
+
+            {/* Desktop Navigation - Right */}
+            <nav className="hidden lg:flex items-center gap-2">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-base text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5"
+                  className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
                 >
                   {item.name}
                 </a>
               ))}
               <a 
                 href="#contact" 
-                onClick={() => setIsMenuOpen(false)}
-                className="mt-2 py-3 bg-white text-black text-center font-medium rounded-full"
+                className="ml-4 px-6 py-2 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-all"
+                data-testid="get-started-btn"
               >
                 Get Started
               </a>
-            </div>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden text-white p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              data-testid="mobile-menu-btn"
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
-        )}
-      </div>
-    </header>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="lg:hidden absolute left-0 right-0 top-16 bg-black/98 backdrop-blur-xl border-t border-white/5 p-4">
+              <div className="flex flex-col gap-2">
+                {navItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-base text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                <a 
+                  href="#contact" 
+                  onClick={() => setIsMenuOpen(false)}
+                  className="mt-2 py-3 bg-white text-black text-center font-medium rounded-full"
+                >
+                  Get Started
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
+      </header>
+    </>
   );
 };
 
