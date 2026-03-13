@@ -27,7 +27,7 @@ const Header = () => {
     <>
       {/* Logo - Fixed top left, aligned with nav bar */}
       {!isScrolled && (
-        <div className="fixed z-50" style={{ top: '10px', left: '20px' }}>
+        <div className="fixed z-50" style={{ top: '-50px', left: '20px' }}>
           <a href="#home" style={{ display: 'block' }}>
             <img 
               src={LOGO_URL} 
