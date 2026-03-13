@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Layout from './components/Layout/Layout';
 import HeroSection from './components/Sections/HeroSection';
+import SettlementSection from './components/Sections/SettlementSection';
 import ServicesSection from './components/Sections/ServicesSection';
 import RegionsSection from './components/Sections/RegionsSection';
 import AboutSection from './components/Sections/AboutSection';
@@ -40,6 +41,7 @@ function App() {
   return (
     <Layout>
       <HeroSection />
+      <SettlementSection />
       <CtaSection />
       <ServicesSection />
       <RegionsSection />
