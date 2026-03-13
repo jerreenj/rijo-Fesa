@@ -7,11 +7,10 @@ const HeroSection = () => {
     <section id="home" className="relative min-h-screen min-h-[100dvh] bg-black overflow-hidden" data-testid="hero-section">
       {/* Background Image - Dublin sunset */}
       <div 
-        className="absolute inset-0 bg-cover"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${BG_IMAGE_URL})`,
-          backgroundPosition: 'center bottom',
-          opacity: 0.85
+          opacity: 0.9
         }}
       ></div>
       
